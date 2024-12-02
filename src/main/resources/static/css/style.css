@@ -1,0 +1,55 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.img1{
+    background-image: url('../images/s1.png');
+    height: 560px;
+    width:105%;
+    background-size: contain;
+    background-repeat: no-repeat;
+   
+}
+.ho1:hover{
+    border:transparent;
+}
+
+.ho:hover{
+    background-color: rgb(55, 234, 55);
+}
+
+.bgimg1{
+    background: url('../images/bgimg1.png');
+    background-attachment: fixed;
+    height: 709px;
+    width: 103%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+}
+.bgimg2{
+    background: url('../images/bgimg4.jpg');
+    background-attachment: fixed;
+    height: 709px;
+    width: 105%;
+    background-repeat: no-repeat;
+}
+.btn1{
+    background-color: black;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    /* border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px; */
+   
+ 
+}
+/* .playbt{
+    color: rgba(218, 221, 223, 0.758);
+    margin-left: 50%;
+    border: 5px solid rgba(218, 221, 223, 0.758);
+} */
