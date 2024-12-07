@@ -163,21 +163,5 @@ public class MainController {
     	return "userlogin";
     }
 	
-//	@PostMapping("/userlogin")
-//	public String UserLogin(@ModelAttribute UserDto userDto, HttpSession session, RedirectAttributes attrib) {
-//		try {
-//			
-//		   User user=new User();
-//			user.setEmail(userDto.getEmail());
-//			user.setUsername(userDto.getUsername());
-//			session.setAttribute("email", user.getEmail());
-//			   return "redirect:index";
-//		
-//		}catch(Exception e) {
-//			attrib.addFlashAttribute("msg", "user not exsit");
-//		return "redirect:/userlogin";
-//		}
-//	}
-	
 }
 
