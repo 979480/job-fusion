@@ -40,7 +40,7 @@ public class Enquiry {
 	@Column(length = 10,nullable=false)
 	private String gender;
 	
-	@Column(length = 30,nullable = false)
+	@Column(length = 100,nullable = false)
 	private String postdate;
 
 	public Long getId() {

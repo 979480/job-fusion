@@ -33,9 +33,10 @@
 					<td th:text="${e.gender}"></td>
 					<td th:text="${e.postdate}"></td>
 					<td>
-						<a th:href="@{'/viewenquiry/delete/' + ${e.id}}">
-						    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
-						</a>
+						<a th:href="@{/viewenquriy/delete/{id}(id=${e.id})}" 
+						    onclick="return confirm('Are you sure you want to delete this enquiry?')">
+						    <button class="btn btn-danger">Delete</button>
+                        </a>
 					</td>
 				</tr>
 			</tbody>

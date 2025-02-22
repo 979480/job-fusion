@@ -1,7 +1,6 @@
 package com.job.jobportal.controller;
-
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +88,7 @@ public class MainController {
 			eq.setMobile(enquiryDto.getMobile());
 			eq.setGender(enquiryDto.getGender());
 			eq.setEnquiry(enquiryDto.getEnquiry());
-			eq.setPostdate(new Date(0)+"");
+			eq.setPostdate(new Date()+"");;
 			erepo.save(eq);
 			SmsSender sms=new SmsSender();
 			sms.sendSms(enquiryDto.getMobile());

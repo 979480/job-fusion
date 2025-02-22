@@ -24,7 +24,7 @@ public class OtpController {
     
     // Step 1: Request OTP
     @PostMapping("/send")
-    public String sendOtp(@ModelAttribute("dto") UserDto dto, HttpSession session, RedirectAttributes attrib) {
+    public String sendOtp(@ModelAttribute UserDto dto, HttpSession session, RedirectAttributes attrib) {
        try {
     	// Use dto.getEmail() to retrieve the email
         otpService.sendOtp(dto.getEmail());

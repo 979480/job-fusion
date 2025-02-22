@@ -42,34 +42,34 @@ public class JobApply {
 	
 	@Column(length = 10,nullable=false)
 	private String mobileNumber;
-	
-//	 @Transient // Hibernate will ignore this field
-//	private MultipartFile resume;
-//	
-    @Lob
-    @Column(columnDefinition = "BLOB")
-    private byte[] resume; // Field to store the file data
 
-//	public MultipartFile getResume() {
+	@Column(length = 500,nullable=false)
+	private  String filename;
+//    @Lob
+//    @Column(columnDefinition = "BLOB")
+//    private byte[] resume; // Field to store the file data
+
+
+//	public byte[] getResume() {
 //		return resume;
 //	}
 //
-//	public void setResume(MultipartFile resume) {
-//		this.resume = resume;
+//	public void setResume(byte[] resumeData) {
+//		this.resume = resumeData;
 //	}
-    
-	public byte[] getResume() {
-		return resume;
-	}
-
-	public void setResume(byte[] resumeData) {
-		this.resume = resumeData;
-	}
 
 	@Column(length = 200, nullable=false)
 	private String postedate;
 	
 	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
 	public String getPostedate() {
 		return postedate;
 	}

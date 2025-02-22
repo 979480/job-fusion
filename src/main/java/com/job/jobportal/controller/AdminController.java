@@ -2,6 +2,7 @@ package com.job.jobportal.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +22,8 @@ import com.job.jobportal.model.Enquiry;
 import com.job.jobportal.model.Job;
 import com.job.jobportal.model.JobApply;
 import com.job.jobportal.modeldto.JobDto;
+import com.job.jobportal.service.EnquiryService;
+
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -35,6 +39,9 @@ public class AdminController {
 	
 	@Autowired
 	JobApplyRepository aprepo;
+	
+	 @Autowired
+	 private EnquiryService enquiryService;
 
 	@GetMapping("/adminhome")
 	public String showAdminHome(HttpSession session, HttpServletResponse response, Model model) {
@@ -78,7 +85,7 @@ public class AdminController {
 		job.setQualification(jobDto.getQualification());
 		job.setCompanyName(jobDto.getCompanyName());
 		job.setType(jobDto.getType());
-		job.setPosteddate(new Date(0)+"");
+		job.setPosteddate(new Date()+"");
 		jobRepo.save(job);
 		attrib.addFlashAttribute("msg","Add successful");
 		return "redirect:postjob";
@@ -129,33 +136,18 @@ public class AdminController {
 		}
 	}
 	
-	@GetMapping("/viewenquriy/delete")
-	public String DeleteEnquiry(@RequestParam Long Id, HttpSession session,Model model,RedirectAttributes redirectAttributes, HttpServletResponse response)
-	{
-		//return"redirect:/admin/viewfeedback";
-		try {
-			response.setHeader("Cache-Control", "no-cache , no-store, must-revalidate");
-			if(session.getAttribute("adminid")!=null){
-				Enquiry res= erepo.getById(Id);
-				
-				try {
-				erepo.delete(res);
-				redirectAttributes.addFlashAttribute("msg", Id+"is deleted successfully");
-				return"redirect:/admin/viewenquriy";
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-				erepo.delete(res);
-				return "redirect:/admin/viewenquriy";
-			}else
-			{
-				return"redirect:/adminlogin";
-			}
-			
-		} catch (Exception e) {
-			return"redirect:/adminlogin";
-		}
-	}
+	 @RequestMapping("/viewenquriy/delete/{id}")
+	    public String deleteEnquiry(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+	        if (enquiryService.existsById(id)) { // Check if enquiry exists
+	            enquiryService.deleteById(id);
+	            redirectAttributes.addFlashAttribute("msg", "Enquiry ID " + id + " deleted successfully.");
+	        } else {
+	            redirectAttributes.addFlashAttribute("error", "Enquiry not found.");
+	        }
+	        return "redirect:admin/viewenquriy";
+	    }
+	 
+	 
 	@GetMapping("/viewForm")
 	public String viewApplyForm(HttpSession session, HttpServletResponse response,Model model) {
 		try {

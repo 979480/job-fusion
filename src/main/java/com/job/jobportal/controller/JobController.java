@@ -91,6 +91,7 @@ public class JobController {
     	job.setEmail(applyDto.getEmail());
     	job.setCurrentLocation(applyDto.getCurrentLocation());
     	job.setQualification(applyDto.getQualification());
+    	job.setFilename(storageFileName);
     	job.setMobileNumber(applyDto.getMobileNumber());
     	job.setPostedate(new Date()+"");
     	jobApplyRepository.save(job);
